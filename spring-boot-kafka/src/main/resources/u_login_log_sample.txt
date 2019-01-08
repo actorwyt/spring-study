@@ -1,0 +1,2 @@
+[2017-01-22 19:00:05,039] 00001{"accountRisk":0,"ip":"192.168.192.160","loginSource":"ULOGINSERVER","product":"mail_client","retCode":201,"ssn":"actorwyt@126.com","time":1545688800000,"userIp":"27.216.89.175","userType":3}
+[2017-01-22 19:00:05,041] 00001{"accountRisk":0,"ip":"192.168.192.168","loginSource":"ULOGINSERVER","product":"mail_client","retCode":201,"ssn":"actorwyt@163.com","time":1545667200000,"userIp":"139.162.65.239","userType":3}

@@ -1,0 +1,24 @@
+spring:
+  kafka:
+    bootstrap-servers: master:9092
+    consumer:
+      group-id: test
+      enable-auto-commit: true
+
+
+component:
+  kafka:
+    groups:
+      FILTERED_LOGIN_LOG:
+        bootstrap: master:9092
+        topics: test
+        group-id: test
+
+notice:
+  filter:
+    included-domains: "@126.com,@yeah.net,@vip.163.com,@vip.126.com,@188.com,@163.com"
+    excluded-products: "carddav"
+    excluded-nations: "中国"
+
+logging:
+  config: classpath:logback-spring.xml

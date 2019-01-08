@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_DIRECTORY" value="/Users/wyt/workspace/logs/dc-rt/"/>
+
+    <!-- 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[%d] %t %5p %c{2}: %m%n</pattern>
+        </layout>
+    </appender>
+
+    <logger name="com.netease.hz.springbootkafka" level="INFO">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <appender name="DEFAULT_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/helloWorld.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{"yyyy-MM-dd HH:mm:ss,SSS"} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../logs/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <MaxHistory>3</MaxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="KAFKA-EVENTS"
+              class="com.netease.hz.springbootkafka.utils.KafkaAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%msg</pattern>
+        </layout>
+    </appender>
+
+    <!--<appender name="ASYNC-KAFKA-EVENTS"-->
+    <!--class="ch.qos.logback.classic.AsyncAppender">-->
+    <!--<discardingThreshold>0</discardingThreshold>-->
+    <!--<queueSize>1</queueSize>-->
+    <!--<appender-ref ref="KAFKA-EVENTS" />-->
+    <!--</appender>-->
+
+    <logger name="kafka-event" additivity="false">
+        <appender-ref ref="KAFKA-EVENTS" />
+    </logger>
+
+
+    <appender name="FILTERED_LOG_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/filtered_login.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>[%d{"yyyy-MM-dd HH:mm:ss,SSS"}]\t%msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/filtered_login.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <MaxHistory>3</MaxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="filtered-log" level="info" additivity="false">
+        <appender-ref ref="FILTERED_LOG_APPENDER"/>
+    </logger>
+</configuration>

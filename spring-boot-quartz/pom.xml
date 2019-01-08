@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-dubbo</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>spring-dubbo-api</module>
-        <module>spring-dubbo-consumer</module>
-        <module>spring-dubbo-provider</module>
-        <module>spring-dubbo-parent</module>
-    </modules>
+    <artifactId>spring-boot-quartz</artifactId>
 
 
 </project>
