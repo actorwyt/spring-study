@@ -7,11 +7,11 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import pers.wyt.springstudy.springboot.aop.annotation.AuthorizationAnnotation;
+import pers.wyt.springstudy.springboot.aop.exception.CheckedException;
 import pers.wyt.springstudy.springboot.aop.service.AuthService;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
-import java.nio.file.AccessDeniedException;
 import java.util.Set;
 
 /**
@@ -26,7 +26,7 @@ public class AuthorizationAdvice {
     @Resource
     private AuthService authService;
 
-    @Around(value = "execution(* com.netease.hz.springbootaop.controller.*.*(..))")
+    @Around(value = "execution(* pers.wyt.springstudy.springboot.aop.controller.*.*(..))")
     public Object afterReturning(ProceedingJoinPoint pjp) throws Throwable {
         Object [] args = pjp.getArgs();
         System.out.println(pjp.getArgs());
@@ -53,7 +53,8 @@ public class AuthorizationAdvice {
             }
         }
         if (!authorized) {
-            throw new AccessDeniedException("没有权限");
+            //throw new AccessDeniedException("没有权限");
+            throw new CheckedException("没有权限");
         }
         return pjp.proceed();
     }

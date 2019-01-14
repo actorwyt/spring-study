@@ -1,7 +1,5 @@
 package pers.wyt.springstudy.springboot.aop.aop;
 
-import com.netease.hz.springbootaop.annotation.FinanceEventAnnotation;
-import com.netease.hz.springbootaop.event.FinanceAbstractEvent;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
+import pers.wyt.springstudy.springboot.aop.annotation.FinanceEventAnnotation;
+import pers.wyt.springstudy.springboot.aop.event.FinanceAbstractEvent;
 
 import java.lang.reflect.Method;
 
 /**
  * 定义切面，抛出切面
- * Created by minghua.zmh on 2018/12/5.
+ *
  */
 @Component
 @Aspect
@@ -24,7 +24,7 @@ public class FinanceEventAdvice implements ApplicationEventPublisherAware {
     private Logger logger = LoggerFactory.getLogger(FinanceEventAdvice.class);
     private ApplicationEventPublisher publisher;
 
-    @AfterReturning(pointcut = "@annotation(com.netease.hz.springbootaop.annotation.FinanceEventAnnotation)",returning = "retval")
+    @AfterReturning(pointcut = "@annotation(pers.wyt.springstudy.springboot.aop.annotation.FinanceEventAnnotation)",returning = "retval")
 
     public void afterReturning(JoinPoint jp, Object retval) {
         Object[] args = jp.getArgs();
